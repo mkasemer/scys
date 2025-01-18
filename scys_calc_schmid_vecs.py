@@ -29,7 +29,6 @@ First created on Fri Jan 3 12:21:24 2025
 # Import statements
 import numpy as np
 import sys
-# import pandas as pd
 
 def scys_calc_schmid_vecs(ctype, covera = 1.633):
 
@@ -271,10 +270,6 @@ def scys_calc_schmid_vecs(ctype, covera = 1.633):
         pdev[2, i] = np.sqrt(2) * pij[1, 2, i]
         pdev[3, i] = np.sqrt(2) * pij[0, 2, i]
         pdev[4, i] = np.sqrt(2) * pij[0, 1, i]
-
-    # Print Schmid vectors to file for debugging
-    # df = pd.DataFrame(np.transpose(pdev))
-    # df.to_csv("/Users/mkasemer/downloads/schmids.csv")
 
     # Return pdev
     return pdev

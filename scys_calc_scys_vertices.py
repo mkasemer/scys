@@ -37,7 +37,6 @@ First created on Sun Aug 20 20:21:22 2023
 # Import statements
 import numpy as np
 from itertools import combinations
-# import pandas as pd 
 import sys
 from scys_calc_theta_bar import scys_calc_theta_bar
 from scys_calc_schmid_vecs import scys_calc_schmid_vecs
@@ -152,10 +151,6 @@ def scys_calc_scys_vertices(ctype, tau, covera = 1.633):
     # individual facet
     vertrows = np.sum(h <= tol, axis = 1)
     verts = verts[:, vertrows == (2 * N)]
-
-    # Print vertices to file for debugging
-    # df = pd.DataFrame(np.transpose(verts))
-    # df.to_csv("/Users/mkasemer/downloads/verts.csv")
 
     # Caclulate mean angle to the nearest neighbor
     theta_bar = scys_calc_theta_bar(verts)
