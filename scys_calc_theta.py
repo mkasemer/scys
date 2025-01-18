@@ -22,7 +22,7 @@ First created on Fri Jan 3 14:07:23 2025
 import numpy as np
 import numpy.linalg as la
 
-def scys_calc_vec_angle(vec1, vec2):   
+def scys_calc_theta(vec1, vec2):   
 
     # Find the dot product
     dots = np.dot(vec1, vec2)
@@ -31,5 +31,5 @@ def scys_calc_vec_angle(vec1, vec2):
     prodn = la.norm(vec1) * la.norm(vec2)
 
     # Find the angle, clipping to avoid edge cases marginally outside of bounds
-    ang = np.degrees(np.arccos(np.clip((dots / prodn), -1, 1)))
-    return ang
+    theta = np.degrees(np.arccos(np.clip((dots / prodn), -1, 1)))
+    return theta

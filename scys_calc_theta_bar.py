@@ -10,8 +10,7 @@ verts: An array, shape [num_verts, 5], containing the deviatoric stress vertices
     are stored in a 5-vector form.
 
 OUTPUT:
-mean_min_ang: The mean of the angle between each vertex and its nearest 
-    neighbor.
+theta_bar: The mean of the angle between each vertex and its nearest neighbor.
 
 TO DO:
     - All caught up.
@@ -23,25 +22,25 @@ First created on Fri Jan 3 12:52:56 2025
 
 # Import statements
 import numpy as np
-from scys_calc_vec_angle import scys_calc_vec_angle
+from scys_calc_theta import scys_calc_theta
 
-def scys_calc_mean_min_angle(verts):   
+def scys_calc_theta_bar(verts):   
 
     # Calculate the mean angular distance to the nearest neighbor
     num_verts = np.shape(verts)[1]
-    angs = np.zeros([num_verts, num_verts])
-    min_ang = np.zeros([num_verts, ])
+    theta = np.zeros([num_verts, num_verts])
+    min_theta = np.zeros([num_verts, ])
     for i in range(0, num_verts):
         
         for j in range(0, num_verts):
 
             # Find the angle between each vertex and every other vertex
-            angs[i, j] = scys_calc_vec_angle(verts[:, i], verts[:, j])
+            theta[i, j] = scys_calc_theta(verts[:, i], verts[:, j])
         
         # For each vertex, find the (second) minimum angle---the nearest 
         # neighbor (the first minimum will be with itself, 0)
-        min_ang[i] = np.partition(angs[i, :], 1)[1]
+        min_theta[i] = np.partition(theta[i, :], 1)[1]
     
     # Find and return the mean angle to the nearest neighbor for all vertices
-    mean_min_ang = np.mean(min_ang)
-    return mean_min_ang
+    theta_bar = np.mean(min_theta)
+    return theta_bar

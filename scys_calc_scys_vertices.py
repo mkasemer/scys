@@ -14,15 +14,17 @@ covera: A real scalar defining the c/a ratio for an HCP material. Default is the
     ideal ratio of 1.633, and is unused unless the crystal type is 'hcp'.
 
 OUTPUT:
-verts: An array, shape [num_verts, 5], containing the deviatoric stress vertices 
-    that comprise the single crystal yield surface, where num_verts is the
-    number of vertices. Each vector is a devatoric stress where the components
-    are stored in a 5-vector form, following the convention:
+verts: An array, shape [5, MV], containing the deviatoric stress vertices 
+    that comprise the single crystal yield surface, where MV is the number of 
+    vertices. Each vector is a devatoric stress where the components are stored 
+    in a 5-vector form, following the convention:
     1: sqrt(1/2)*(11-22)
     2: sqrt(3/2)*(33)
     3: sqrt(2)*(23)
     4: sqrt(2)*(13)
     5: sqrt(2)*(12)
+MV: The number of vertices.
+theta_bar: The mean of the angle to the nearest neighbor among all vertices.
 
 TO DO:
     - All caught up.
@@ -37,7 +39,7 @@ import numpy as np
 from itertools import combinations
 # import pandas as pd 
 import sys
-from scys_calc_mean_min_angle import scys_calc_mean_min_angle
+from scys_calc_theta_bar import scys_calc_theta_bar
 from scys_calc_schmid_vecs import scys_calc_schmid_vecs
 
 def scys_calc_scys_vertices(ctype, tau, covera = 1.633):
@@ -156,16 +158,16 @@ def scys_calc_scys_vertices(ctype, tau, covera = 1.633):
     # df.to_csv("/Users/mkasemer/downloads/verts.csv")
 
     # Caclulate mean angle to the nearest neighbor
-    mean_min_ang = scys_calc_mean_min_angle(verts)
+    theta_bar = scys_calc_theta_bar(verts)
 
     # Print pertinent values to terminal
     print("Stress vertices", verts)
-    num_verts = np.shape(verts)[1]
-    print("Number of vertices:", num_verts)
-    print("Mean angle to nearest neighbor:", mean_min_ang)
+    MV = np.shape(verts)[1]
+    print("Number of vertices:", MV)
+    print("Mean angle to nearest neighbor:", theta_bar)
 
     # Return the stress vertices as output
-    return verts, num_verts, mean_min_ang
+    return verts, MV, theta_bar
 
 # Example FCC and BCC crystal tau array
 # tau = np.double(np.array([ \
@@ -230,4 +232,4 @@ def scys_calc_scys_vertices(ctype, tau, covera = 1.633):
     # ]))
 
 # Run code
-# verts, num_verts, mean_min_ang = scys_calc_scys_vertices('hcp', tau, covera=1.587)
+# verts, MV, theta_bar = scys_calc_scys_vertices('hcp', tau, covera=1.587)
