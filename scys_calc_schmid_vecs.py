@@ -15,8 +15,8 @@ covera: A real scalar defining the c/a ratio for an HCP material. Default is the
     ideal ratio of 1.633, and is unused unless the crystal type is 'hcp'.
 
 OUTPUT:
-pdev: An array, shape [5, num_slip], containing the Schmid tensors as deviatoric
-    5-vectors, where num_slip is the number of slip systems.
+pdev: An array, shape [5, N], containing the Schmid tensors as deviatoric
+    5-vectors, where N is the number of slip systems.
 
 TO DO:
     - All caught up.

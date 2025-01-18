@@ -4,10 +4,10 @@
 Calculate the mean of the angle between each vertex and its nearest neighbor.
 
 INPUT:
-verts: An array, shape [num_verts, 5], containing the deviatoric stress vertices 
-    that comprise the single crystal yield surface, where num_verts is the
-    number of vertices. Each vector is a devatoric stress where the components
-    are stored in a 5-vector form.
+verts: An array, shape [MV, 5], containing the deviatoric stress vertices 
+    that comprise the single crystal yield surface, where MV is the number of 
+    vertices. Each vector is a devatoric stress where the components are stored 
+    in a 5-vector form.
 
 OUTPUT:
 theta_bar: The mean of the angle between each vertex and its nearest neighbor.
@@ -27,12 +27,12 @@ from scys_calc_theta import scys_calc_theta
 def scys_calc_theta_bar(verts):   
 
     # Calculate the mean angular distance to the nearest neighbor
-    num_verts = np.shape(verts)[1]
-    theta = np.zeros([num_verts, num_verts])
-    min_theta = np.zeros([num_verts, ])
-    for i in range(0, num_verts):
+    MV = np.shape(verts)[1]
+    theta = np.zeros([MV, MV])
+    min_theta = np.zeros([MV, ])
+    for i in range(0, MV):
         
-        for j in range(0, num_verts):
+        for j in range(0, MV):
 
             # Find the angle between each vertex and every other vertex
             theta[i, j] = scys_calc_theta(verts[:, i], verts[:, j])

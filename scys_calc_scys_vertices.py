@@ -6,9 +6,9 @@ crystal yield surface.
 
 INPUT:
 ctype: Crystal type. Can be 'fcc', 'bcc', 'bct', or 'hcp'.
-tau: An array, shape [nslip, 2], containing the magnitudes of the critical
-    resolved shear stress (strength) values for each slip system in both 
-    "positive" (first column) and "negative" slip (second column). Do not
+tau: An array, shape [N, 2], containing the magnitudes of the critical
+    resolved shear stress (strength) values for each of the N slip systems in 
+    both "positive" (first column) and "negative" slip (second column). Do not
     include negative values in either column - sign is handled internally.
 covera: A real scalar defining the c/a ratio for an HCP material. Default is the
     ideal ratio of 1.633, and is unused unless the crystal type is 'hcp'.
